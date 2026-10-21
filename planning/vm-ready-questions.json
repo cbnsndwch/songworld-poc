@@ -1,0 +1,18 @@
+{
+  "stage": "interview",
+  "title": "Songworld is playable — ready to connect the B200",
+  "goalSlug": "songworld-vm-ready",
+  "questions": [
+    {
+      "id": "vm-ready",
+      "prompt": "What is the current VM connection status?",
+      "description": "The local game is running at http://127.0.0.1:4310. The bootstrap scripts and real Hunyuan workers are prepared, and 20 tests pass. You can start the B200 now. My SSH attempt currently fails because nebius-gpu-vm does not resolve, so the SSH host profile is not available yet. Once you have started the VM and configured that profile, I will inspect the GPU/toolkit and generate one real textured jungle arch first. No VM has been started and no GPU credits have been spent by me. You can add connection notes here; do not include passwords or private key contents.",
+      "answerMode": "single-custom",
+      "options": [
+        { "id": "ready", "label": "VM running and SSH profile ready", "description": "Connect through nebius-gpu-vm and perform the first GPU checks." },
+        { "id": "starting", "label": "I am still starting/configuring it", "description": "Keep the local playtest available while I finish the VM setup." },
+        { "id": "help", "label": "I need help with the VM or SSH profile", "description": "Describe what is on screen or the error in the notes, and help me finish setup." }
+      ]
+    }
+  ]
+}

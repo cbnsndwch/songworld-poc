@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c141d"><meta name="description" content="Turn your music taste into a personal 3D running adventure.">
+  <title>Songworld — Step inside your music</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="importmap">{"imports":{"three":"/vendor/build/three.module.js","three/addons/":"/vendor/examples/jsm/"}}</script>
+</head>
+<body>
+  <canvas id="world" aria-label="Explorable 3D platforming world"></canvas>
+  <div class="vignette"></div>
+  <header class="topbar">
+    <a href="/" class="brand" aria-label="Songworld home"><span class="brand-icon"><i></i><i></i><i></i><i></i></span>songworld<span class="brand-dot">.</span></a>
+    <div class="top-right"><span id="connection" class="connection"><i></i> LOCAL PLAYTEST</span><button id="controls-button" class="text-button">Controls</button><button id="library-button" class="text-button">My worlds <span id="world-count">0</span></button><button id="settings-button" class="icon-button" aria-label="Connect model services">⚙</button></div>
+  </header>
+  <main id="home" class="home">
+    <div class="eyebrow"><span class="tiny-line"></span> YOUR MUSIC. YOUR UNIVERSE.</div>
+    <h1>Every song.<br>A world to<br><em>get lost in.</em></h1>
+    <p class="intro">Climb the unexpected. Follow a secret path.<br>Step inside a world shaped by your music.</p>
+    <section class="track-card" aria-label="Choose your inspiration">
+      <div class="card-top"><span>01 / CHOOSE YOUR INSPIRATION</span><span class="catalog-label">MUSICBRAINZ ↗</span></div>
+      <form id="search-form" class="search-form"><label class="sr-only" for="track-title">Track title</label><input id="track-title" value="Welcome to the Jungle" placeholder="Track title" autocomplete="off" required><label class="sr-only" for="artist-name">Artist</label><input id="artist-name" value="Guns N’ Roses" placeholder="Artist" autocomplete="off"><button type="submit" id="search-button" aria-label="Search songs">↗</button></form>
+      <div id="search-results" class="search-results" hidden></div>
+      <div id="search-status" class="small-status" aria-live="polite"></div>
+      <div class="selected-track"><div class="artwork" id="artwork"><img id="cover-image" alt="" hidden><div class="cover-placeholder" id="cover-placeholder"><span>G N’ R</span><b>THE<br>JUNGLE</b><small>PLAYTEST ART</small></div></div><div class="track-meta"><div class="overline" id="track-source">SAVED DEMO · INSPIRATION ONLY</div><h2 id="selected-title">Welcome to the Jungle</h2><p id="selected-artist">Guns N’ Roses</p><div class="track-tags"><span id="genre-label">HARD ROCK</span><span id="tempo-label">109 BPM EST.</span></div></div><div class="palette" id="palette" aria-label="World color palette"></div></div>
+      <div class="card-controls"><label>FLOW <select id="difficulty"><option value="chill">Chill</option><option value="flow" selected>Flow</option><option value="intense">Intense</option></select></label><label>TEMPO <input id="tempo" type="number" min="70" max="180" value="109" aria-label="Soundtrack target tempo"> <span>BPM</span></label><button id="manual-track" class="subtle-button">Use entered track</button></div>
+      <div class="biome-control"><label for="biome">WORLD ATMOSPHERE</label><select id="biome"><option value="auto">Match my track · 24 biomes</option></select><span id="biome-source">Shared biome buckets · different arrangements for your tracks</span></div>
+      <button id="play-button" class="primary-button">Enter playtest <span>↗</span></button>
+      <button id="generate-button" class="generate-button">✦ Generate with my VM <span>Hunyuan · Nemotron · ACE-Step</span></button>
+      <p class="disclosure" id="preview-disclosure">Play instantly with local scenery and a synth soundtrack.<br>Your VM creates original AI music and reusable scenery.</p>
+    </section>
+    <div class="home-footer"><span class="key-mini space">WASD</span> explore <span class="key-mini space">SPACE</span> jump <span class="headphones">drag to orbit · SHIFT sprint</span></div>
+  </main>
+  <div id="scene-label" class="scene-label"><span class="scene-index">WORLD / 001</span><h3 id="scene-name">Electric wilderness</h3><p id="scene-description">HARD ROCK · CONCRETE CANOPY · GOLDEN HOUR</p><div class="scene-line"></div><span class="scene-note">A new way to get lost in your music.</span></div>
+  <div class="scene-coordinates">24 BIOMES / INFINITE ARRANGEMENTS<br>YOUR FREQUENCY, REIMAGINED</div>
+  <section id="hud" class="hud" hidden>
+    <div class="relic-tracker"><span id="relic-count">◇ ◇ ◇</span><small id="relic-distance">FOLLOW THE LIGHT</small><i id="relic-arrow">↑</i></div>
+    <div class="hud-top"><div><span id="chapter-label" class="eyebrow">INTO THE WILD</span><h2 id="objective">Follow the light.</h2></div><div class="score"><span id="sparks">0</span><small>SPARKS</small></div></div>
+    <div class="progress-track"><div id="run-progress"></div></div><div class="hud-time"><span id="elapsed">0:00</span><span id="run-title">Electric wilderness</span><span id="total-time">1:15</span></div>
+    <div class="hud-bottom"><div class="beat-meter"><i></i><i></i><i></i><i></i><span id="beat-label">109 BPM</span></div><div id="run-hint">WASD explore · SPACE jump · drag / Q E orbit · SHIFT sprint · ESC pause</div><button id="pause-button" class="outline-button">Pause Ⅱ</button></div>
+    <div id="toast" class="toast" aria-live="polite"></div><div id="audio-provenance" class="audio-provenance">LOCAL SYNTH PLAYTEST</div>
+    <div class="touch-controls"><button id="touch-left" aria-label="Move left">←</button><button id="touch-jump" aria-label="Jump">JUMP</button><button id="touch-right" aria-label="Move right">→</button></div>
+  </section>
+  <section id="pause-overlay" class="overlay" hidden><div class="modal compact"><div class="eyebrow">TAKE A BREATH</div><h2>Find your rhythm.</h2><p id="pause-copy">Your world is waiting right here.</p><button id="resume-button" class="primary-button">Keep running <span>↗</span></button><button id="pause-controls-button" class="outline-button">Gameplay controls</button><button id="restart-button" class="outline-button">Restart run</button><button id="exit-button" class="text-button">Back to my music</button></div></section>
+  <section id="finish-overlay" class="overlay" hidden><div class="modal compact"><div class="eyebrow">FREQUENCY FOUND</div><h2>You made it<br><em>your own.</em></h2><p id="finish-summary"></p><div class="finish-stats"><div><b id="finish-sparks">0</b><span>SPARKS</span></div><div><b id="finish-best">0</b><span>PERSONAL BEST</span></div></div><button id="again-button" class="primary-button">One more run <span>↗</span></button><button id="finish-home" class="text-button">Find my next world</button></div></section>
+  <section id="settings-overlay" class="overlay" hidden><form id="settings-form" class="modal"><button type="button" class="close-button" data-close="settings-overlay" aria-label="Close settings">×</button><div class="eyebrow">YOUR WORLD ENGINE</div><h2>Connect your VM.</h2><p>Use an SSH tunnel to keep your model services private. Generated worlds and music are saved locally for replay.</p><label>Nemotron API URL<input name="nemotronURL" placeholder="http://127.0.0.1:8000/v1" required></label><label>Nemotron model<input name="nemotronModel" required></label><label>ACE-Step API URL<input name="acestepURL" placeholder="http://127.0.0.1:8001" required></label><label>Hunyuan world adapter URL <span class="optional">optional for first playtest</span><input name="hunyuanURL" placeholder="Not connected"></label><div id="service-status" class="service-status"></div><button class="primary-button" type="submit">Save & check connection <span>↗</span></button><p class="disclosure">Generated scenery and soundtracks are saved locally for your next visit.</p></form></section>
+  <section id="generation-overlay" class="overlay" hidden><div class="modal compact"><div class="eyebrow">TUNING INTO YOUR FREQUENCY</div><h2 id="generation-title">Building your world.</h2><div class="generation-progress"><div id="generation-bar"></div></div><p id="generation-message" aria-live="polite">Finding your inspiration…</p><button id="generation-play" class="primary-button" hidden>Enter your world <span>↗</span></button><button id="generation-close" class="outline-button">Return to music</button></div></section>
+  <section id="library-overlay" class="overlay" hidden><div class="modal"><button class="close-button" data-close="library-overlay" aria-label="Close library">×</button><div class="eyebrow">YOUR PERSONAL UNIVERSE</div><h2>Worlds worth returning to.</h2><p>Your saved soundtracks, runs, and favorite frequencies.</p><div id="library-content"></div></div></section>
+  <section id="controls-overlay" class="overlay" hidden><div class="modal controls-modal" role="dialog" aria-modal="true" aria-labelledby="controls-title"><button id="controls-close" class="close-button" aria-label="Close gameplay controls">×</button><div class="eyebrow">MAKE IT FEEL RIGHT</div><h2 id="controls-title">Gameplay controls.</h2><p>Changes apply immediately and save on this device. Higher response values feel snappier.</p><div class="controls-presets"><button type="button" data-preset="responsive" class="outline-button">Responsive</button><button type="button" data-preset="gentle" class="outline-button">Gentle</button></div><div id="control-sliders"></div><label class="invert-control"><input id="control-invert" type="checkbox"> Invert vertical camera</label><p class="controls-keys">WASD / arrows · move &nbsp; SPACE · jump<br>SHIFT · sprint &nbsp; Drag / Q E · orbit &nbsp; Scroll · zoom</p><button id="controls-done" class="primary-button">Done <span>↗</span></button><button id="controls-reset" class="text-button">Restore defaults</button></div></section>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

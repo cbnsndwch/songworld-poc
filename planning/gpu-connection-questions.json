@@ -1,0 +1,25 @@
+{
+  "stage": "interview",
+  "title": "Connect the real 3D asset generator",
+  "goalSlug": "songworld-model-connection",
+  "questions": [
+    {
+      "id": "hunyuan-product",
+      "prompt": "Which Hunyuan model should generate the 3D tile assets?",
+      "description": "Your original request named HY World 2.1. Tencent's World repository currently links 2.1 to its hosted product, while the downloadable world-generation instructions cover 2.0. Hunyuan3D 2.1 is a different, downloadable mesh-generation model suited to producing GLB tile assets. I need to keep this distinction explicit before spending your VM credits. The game keeps free 3D movement, modern Three.js rendering, WFC assembly, and at least 24 biome buckets either way.",
+      "answerMode": "single-custom",
+      "options": [
+        { "id": "hunyuan3d", "label": "Hunyuan3D 2.1 for tile meshes", "description": "Use the downloadable asset-generation model on the B200; cache tiles by biome." },
+        { "id": "hyworld21", "label": "Keep HY World 2.1 specifically", "description": "Supply its available model or API access details, or investigate access before starting the VM." },
+        { "id": "both", "label": "Both, with separate roles", "description": "Hunyuan3D makes modular assets; HY World provides larger scene generation when its runtime is available." }
+      ]
+    },
+    {
+      "id": "vm-connection",
+      "prompt": "What connection details can I use when the VM is ready?",
+      "description": "Provide the SSH username and host/IP, the local SSH key path if needed, and the VM image/OS. Do not paste private key contents or passwords. If it is still off, say so; I will finish local preparation first. No VM has been created or started by me.",
+      "answerMode": "text",
+      "required": false
+    }
+  ]
+}

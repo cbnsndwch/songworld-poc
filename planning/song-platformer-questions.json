@@ -1,0 +1,37 @@
+{
+  "stage": "interview",
+  "title": "Your song becomes a platformer — first playable in one hour",
+  "goalSlug": "song-platformer",
+  "questions": [
+    {
+      "id": "perspective",
+      "prompt": "What should playing the platformer feel like?",
+      "description": "Already recorded: levels generated from your song, cover art sets the palette, lyrics shape goals and pacing, and the artist shapes the vibe. The target is something you enjoy long term. The first testable build has a one-hour budget; the B200 VM stays off until we are ready. Hunyuan worlds, Nemotron storytelling, audio and music remain the hackathon goal.",
+      "answerMode": "single-custom",
+      "recommendedOptionIds": ["side-view"],
+      "options": [
+        { "id": "side-view", "label": "Side-view platformer with depth (recommended)", "description": "Precise jumping and layered scenery; generated 3D worlds can supply the environment." },
+        { "id": "full-3d", "label": "Full 3D platformer", "description": "Move and jump through a 3D space with a following camera." },
+        { "id": "runner", "label": "Music runner", "description": "Forward motion follows the song; you time jumps and other actions." }
+      ]
+    },
+    {
+      "id": "song-input",
+      "prompt": "How do you want to bring a song into the first prototype?",
+      "description": "Public catalogs can provide track information and cover images; access to a playable full song is a separate requirement. We can extract timing and energy from an uploaded audio file.",
+      "answerMode": "single-custom",
+      "recommendedOptionIds": ["upload-search"],
+      "options": [
+        { "id": "upload-search", "label": "Upload audio, then match artist/title (recommended)", "description": "Play your file and search catalogs for artwork and available lyrics." },
+        { "id": "search-first", "label": "Search artist/title first, then attach audio", "description": "Choose the song from search results, then supply its playable audio." }
+      ]
+    },
+    {
+      "id": "demo-song",
+      "prompt": "Which song should anchor your first playtest?",
+      "description": "Enter the title and artist. Optionally describe what makes its mood special to you and whether you have an audio file ready. You can skip this and choose inside the prototype.",
+      "answerMode": "text",
+      "required": false
+    }
+  ]
+}

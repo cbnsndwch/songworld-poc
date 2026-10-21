@@ -1,0 +1,28 @@
+{
+    "decision": "submitted",
+    "stage": "interview",
+    "result": {
+        "stage": "interview",
+        "title": "Connect the real 3D asset generator",
+        "goalSlug": "songworld-model-connection",
+        "answers": [
+            {
+                "questionId": "hunyuan-product",
+                "selectedOptionIds": [
+                    "hunyuan3d"
+                ],
+                "customAnswer": "",
+                "note": "try to get HY world 2.0 running on the vm, no tencent cloud inference, please",
+                "answer": "Hunyuan3D 2.1 for tile meshes",
+                "completed": true
+            },
+            {
+                "questionId": "vm-connection",
+                "selectedOptionIds": [],
+                "customAnswer": "",
+                "answer": "I will create an ssh host profile on my user named `nebius-gpu-vm` so you can just use it. let me know when we need to spin the machine up",
+                "completed": true
+            }
+        ]
+    }
+}

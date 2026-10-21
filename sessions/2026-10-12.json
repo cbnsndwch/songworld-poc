@@ -1,0 +1,40 @@
+{
+  "id": "2026-10-12",
+  "date": "2026-10-12",
+  "title": "Songworld prototype and real GPU pipeline experiment",
+  "focusStory": "",
+  "whatWorks": "The founder played the local Three.js platformer and tested camera/turning changes. Controls now have persistent tuning sliders. A first structural biome pass adds connected ground, city blocks, caverns, terraces and coastal islands. A real Hunyuan3D 2.1 textured arch was generated, imported locally and rendered. ACE-Step generated a real 75-second instrumental benchmark and saved it locally. HY World 2.0 WorldMirror reconstructed depth, normals, camera parameters and a point cloud from one image.",
+  "whereItLives": "D:/CBN/PROJECTS/AI/NEBIUS_AI_CLOUD — npm start, then http://127.0.0.1:4310",
+  "blocker": "Work stopped at the user's request for VM deprovisioning. Full integrated generation is incomplete: no preserved verified Nemotron story artifact, only one real Hunyuan landmark, incomplete biome banks and no full HY World generation. Reconstruction is not a playable generated world. The newest Nemotron cache configuration was still starting when stopped.",
+  "nextTask": "Inspect the local prototype and archived GPU logs, then complete one playable world using a preserved real Nemotron story, its generated ACE-Step soundtrack and a complete validated Hunyuan biome bank before expanding the remaining biomes.",
+  "notes": "Verified results, unfinished work, shutdown evidence, backup contents and lessons are recorded in details. No story was marked complete.",
+  "updatedAt": "2026-10-13T01:39:56.0545738Z",
+  "details": {
+    "shutdown": "songworld-models container inspected as exited, Running=false; hardware monitor stopped; no vLLM/ACE/generation workers found; nvidia-smi showed 0 MiB and 0% utilization. The VM itself was not deleted by the agent; user was explicitly signaled it was ready to deprovision.",
+    "backup": "artifacts/vm-session-backup-2026-10-12.tar.gz contains VM assets, logs, worker scripts and the Nemotron parser. SHA256 c4afce6dc2a03b9fc4a0e0794d7bc3a3494e35ab049374f7c794266ef5f9b600 matched remotely and locally. Model checkpoints and Python environments are not included; reinstall/redownload rather than assuming they were preserved.",
+    "localOutputs": [
+      "data/generated-assets: actual embedded-texture Hunyuan arch GLB and provenance manifest",
+      "data/audio/benchmark-soundtrack.mp3 and data/benchmark-acestep-music.json: real music from a handwritten benchmark prompt, not Nemotron",
+      "artifacts/hardware.jsonl and hardware-report.json: sampled telemetry; full shutdown-era telemetry is in the backup",
+      "artifacts/generated-mesh-inspection.json: arch geometry inspection",
+      "artifacts/terrain-city.png, terrain-cavern.png, terrain-mountain.png and gameplay-controls.png: browser evidence"
+    ],
+    "lessons": [
+      "The actual VM was H200, approximately 141 GB VRAM, despite the planned B200. Detect architecture before selecting quantization or dependencies.",
+      "Nemotron 120B FP8 used 114.12 GiB for weights; initial total GPU usage was 136135 MiB. Large preallocated KV cache was wasteful for one short story.",
+      "vLLM sleep took 684 seconds and substantially consumed host RAM. Avoid per-track offloading of a 114 GiB model. Smaller cache allocation 0.86 was being evaluated with ACE resident but did not complete verification before shutdown.",
+      "A real Nemotron request returned HTTP 200, but its verification artifact was lost because finally cleanup timed out. Save successful outputs before GPU lifecycle operations; this is now implemented and fixture-tested.",
+      "ACE-Step lazy-loads on the first task; models_initialized=false on /health does not mean startup is broken. A real warm 75-second generation/download took about nine seconds on H200. Logged PyTorch peak allocation was about 6.28 GB; two-second host samples can miss brief peaks.",
+      "Hunyuan3D 2.1 produces standard textured meshes usable in Three.js. HY World 2.0 reconstruction outputs are separate; do not present point clouds or splats as game-ready GLBs.",
+      "One beautiful generated landmark does not validate tile seams, collision, visibility or a complete playable level. Keep those requirements explicit.",
+      "Palette and prop swaps do not create distinct courses. Structural terrain and gameplay routes must vary, and the current first pass still shares many obstacles/objectives.",
+      "Keep camera response and avatar turning independently adjustable. User feedback favored responsive controls and persistent settings over one imposed smoothing profile.",
+      "Use an official CUDA development container and isolated Python environments. Install libglm-dev for gsplat, use cupy-cuda12x wheels, preserve LF shell endings, and invoke uploaded scripts with bash when executable permissions are absent.",
+      "Blender 4.2 could segfault during interpreter teardown after a valid export. The worker validates outputs and flushes CUDA before explicit exit; inference errors must still fail normally.",
+      "Track elapsed startup/compile time, memory and cost from the beginning. Do not treat SSH observation timeouts as terminal process failures or restart live work solely because polling expired.",
+      "The original one-hour target was met only for a local prototype, not the full model-backed product. Future planning must make that distinction explicit."
+    ],
+    "verification": "27 tests passed after terrain changes; the four model adapter tests, including preserving a story before failed cleanup, passed after the latest adapter change. No full end-to-end generated-world completion was claimed.",
+    "futureAuthorization": "Do not recreate/start a paid VM or resume cloud spending automatically. The user ended this session and cleared the active goal."
+  }
+}
